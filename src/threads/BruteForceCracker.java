@@ -3,7 +3,7 @@
 // Your goal is to re-write the algorithm using Threads. Try to shorten the time it takes 
 // to find the code to be as little as possible.
 // Let's see who can crack the code the fastest!
-
+package threads;
 // Pro-tip: Do not include the creation of the threads as part of the time. 
 
 import java.util.Random;

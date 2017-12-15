@@ -18,9 +18,71 @@ public class BruteForceCracker {
 	public static void main(String[] args) {
 		System.out.println("Starting Brute Force Checker");
 		startTime = System.currentTimeMillis();
+
+		Thread [] thread = new Thread[4];
+	thread[0] = new Thread (new Runnable() {
+		public void run() {
+			int ctr = 000;
+			while(!checkCode(ctr++));
+			
+			endTime = System.currentTimeMillis();
+			elapsedTime = (float)(endTime - startTime);
+			elapsedTime /= 1000.f;
+			System.out.println("Total time taken: " + elapsedTime + " seconds");
+		}
+	});
+	thread[1] = new Thread (new Runnable() {
+		public void run() {
+			int ctr = 10000;
+			while(!checkCode(ctr++));
+			
+			endTime = System.currentTimeMillis();
+			elapsedTime = (float)(endTime - startTime);
+			elapsedTime /= 1000.f;
+			System.out.println("Total time taken: " + elapsedTime + " seconds");
+		}
+	});
+	
+	thread[2] = new Thread (new Runnable() {
+		public void run() {
+			int ctr = 1000000;
+			while(!checkCode(ctr++));
+			
+			endTime = System.currentTimeMillis();
+			elapsedTime = (float)(endTime - startTime);
+			elapsedTime /= 1000.f;
+			System.out.println("Total time taken: " + elapsedTime + " seconds");
+		}
+	});
+	
+	thread[3] = new Thread (new Runnable() {
+		public void run() {
+			int ctr = 10000000;
+			while(!checkCode(ctr++));
+			
+			endTime = System.currentTimeMillis();
+			elapsedTime = (float)(endTime - startTime);
+			elapsedTime /= 1000.f;
+			System.out.println("Total time taken: " + elapsedTime + " seconds");
+		}
+	});
+	
+	for (int i = 0; i < thread.length; i++) {
+		thread[i].start();
+		System.out.println(thread[i]);
+	}
+	for (int i = 0; i < thread.length; i++) {
+		try {
+			thread[i].join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(thread[i]);
+	}
+	
 		
-		int ctr = 0;
-		while(!checkCode(ctr++));
+		
 		
 		endTime = System.currentTimeMillis();
 		elapsedTime = (float)(endTime - startTime);
@@ -30,6 +92,7 @@ public class BruteForceCracker {
 	
 	public static boolean checkCode(long p){
 		if(p == code){
+			System.out.println("found" + p);
 			return true;
 		}else{
 			return false;
